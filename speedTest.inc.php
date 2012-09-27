@@ -7,6 +7,7 @@
 require_once 'speedTest.conf.php';
 
 global
+    $curpath,
     $maxDistance,
     $conInfo,
     $downloadSizes,
@@ -14,7 +15,7 @@ global
     $tmpdir;
 
 $randoms=rand(100000000000, 9999999999999);
-
+$curpath=dirname(__FILE__).DIRECTORY_SEPARATOR; 
 
 
 //def Distance(self, one, two):
@@ -149,8 +150,9 @@ function doTest($location,$findBest=true){
 
 function downloadServerList(){
     global 
-	$verbose;
-    $cmd = "curl http://speedtest.net/speedtest-servers.php > testservers.xml";
+        $curpath,
+        $verbose;
+    $cmd = "curl http://speedtest.net/speedtest-servers.php > ".$curpath."testservers.xml";
     if($verbose)    
 	echo 'Downloading server list from http://speedtest.net/speedtest-servers.php'."\n";
     if(!$verbose)	
@@ -198,21 +200,22 @@ function getConnectionInfo(){
 
 function getServer($location){
     global
+    $curpath,
 	$maxDistance,
 	$conInfo,
 	$verbose;
     
     $ret=array();
     //$cmd = 'cat testservers.xml | grep -i "\"'.$location.'\"" |head -1 |sed -E \'s/.* url="(https?:\/\/[^\/]*)\/.*name="([^"]*).*countrycode="([^"]*)".*/\1/\'';
-    if(!file_exists("testservers.xml")){
+    if(!file_exists($curpath."testservers.xml")){
 	if(downloadServerList()===false){
 	    return false;
 	}
     }
     if($location){
-	$cmd = 'cat testservers.xml | grep -i "\"'.$location.'\""';
+	$cmd = 'cat '.$curpath.'testservers.xml | grep -i "\"'.$location.'\""';
     }else{
-	$cmd = 'cat testservers.xml';
+	$cmd = 'cat ' .$curpath.  'testservers.xml';
     }
     //$cmd = 'cat testservers.xml | grep -i "\"'.$location.'\"" |head -1';
 //	|sed -E \'s/.* url="(?P<url>https?:\/\/[^\/]*)\/.*name="([^"]*).*countrycode="([^"]*)".*/\1/\'';
@@ -406,12 +409,13 @@ function getDownload($server){
 
 function getUpload($server){
     global
-	$iface,
-	$uploadSizes,
-	$verbose,
-	$randoms,
-	$curl_proxy,
-	$tmpdir;
+        $curpath,
+        $iface,
+        $uploadSizes,
+        $verbose,
+        $randoms,
+        $curl_proxy,
+        $tmpdir;
     
     $ret=array();
     $uploads=array();
@@ -419,14 +423,14 @@ function getUpload($server){
     if($verbose)
 	    echo "\n\033[92mGetting uploads for " .$server['name']."(".$server['countrycode'].") from ".$server['url']."\033[0m\n";
     foreach($uploadSizes as $size){
-	$file='uploads/'."upload_".$size;
+	$file=$curpath.'uploads/'."upload_".$size;
 	if(!file_exists($file)){
 	    if($verbose)
-		echo "\tCreating upload file for ".$size."\n";
+            echo "\tCreating upload file for ".$size."\n";
 	    mkdir('uploads');
 	    $blocks=substr($size, 0,-1);
 	    $blocksize=  strtolower(substr($size, -1));
-	    shell_exec("dd if=/dev/urandom of=uploads/upload_".$size." bs=1".$blocksize. " count=".$blocks." > /dev/null 2>&1");
+	    shell_exec("dd if=/dev/urandom of=".$file." bs=1".$blocksize. " count=".$blocks." > /dev/null 2>&1");
 	    
 	    
 	}
