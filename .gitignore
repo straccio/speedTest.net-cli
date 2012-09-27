@@ -1,0 +1,15 @@
+
+.DS_Store
+/uploads/
+/speedTest.net-cli.zip
+/test
+/testservers.xml
+nbproject/private/config.properties
+
+nbproject/private/private.properties
+
+nbproject/private/private.xml
+
+nbproject/project.properties
+
+nbproject/project.xml
