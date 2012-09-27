@@ -40,7 +40,7 @@ if(isset($options['?'])||isset($options['h'])||isset($options['help'])){
     echo "Usage:\n".
 	 "\t--getlist\t\t\tDownload the list server.\n".
 	 "\t--location=[server location]\tTell server localtion example 'cesena'.\n\t\t\t\t\tIf not specified it find the best sever in ".$maxDistance."km.\n".
-	 "\t--server=[server url]\tSpecify a custom url server\n".
+	 "\t--server=[server url]\t\tSpecify a custom url server\n".
 	 "\t--nobest\t\t\tDon't find the best server, execute test on all servers.\n\t\t\t\t\tYou need to specify a location.\n".
 	 "\t--proxy=[host:port]\t\tForce using defined proxy server.\n".
 	 "\t--noproxy\t\t\tForce NOT using even if define the env http_proxy.\n".
