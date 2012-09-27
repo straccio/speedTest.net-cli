@@ -24,7 +24,7 @@ $uploadSizes=array(			//Specify the size for upload file, it automatic create it
 );	
 
 
-$smallDownloadSizes=array(			//Specify the size for download images for small test, it download one image for size
+$smallDownloadSizes=array(		//Specify the size for download images for small test, it download one image for size
 //    350,
 //    500,
 //    750,
@@ -36,7 +36,7 @@ $smallDownloadSizes=array(			//Specify the size for download images for small te
 //    3500,
 //    4000,
 );
-$smallUploadSizes=array(			//Specify the size for upload file for small test, it automatic create it if needed.
+$smallUploadSizes=array(		//Specify the size for upload file for small test, it automatic create it if needed.
 //    "500K",
 //    "1M",
     "2M",

@@ -11,13 +11,13 @@ Configuration:
 --------------
 edit "speedTest.conf.php"
 <pre>
-define('LATENCY_ROUNDS', 5);		//How many time do the latency test for server
-$maxDistance=100;			//Max distance in km used by servers filter when you don't specify the location
-$tmpdir = '/tmp/';			//temp folder used to download test files
-$downloadSizes=array();			//Specify the size for download images, it download one image for size
-$uploadSizes=array();			//Specify the size for upload file, it automatic create it if needed.
-$smallDownloadSizes=array();		//Specify the size for download images for small test, it download one image for size
-$smallUploadSizes=array();		//Specify the size for upload file for small test, it automatic create it if needed.
+    define('LATENCY_ROUNDS', 5);    //How many time do the latency test for server
+    $maxDistance=100;		    //Max distance in km used by servers filter when you don't specify the location
+    $tmpdir = '/tmp/';		    //temp folder used to download test files
+    $downloadSizes=array(2000);	    //Specify the size for download images, it download one image for size
+    $uploadSizes=array(10M);	    //Specify the size for upload file, it automatic create it if needed.
+    $smallDownloadSizes=array(750); //Specify the size for download images for small test, it download one image for size
+    $smallUploadSizes=array(2M);    //Specify the size for upload file for small test, it automatic create it if needed.
 </pre>
 
 Usage:
