@@ -5,6 +5,7 @@
 //dd if=/dev/urandom of=upload_2 bs=1K count=500
 //dd if=/dev/urandom of=upload_3 bs=1M count=1
 require_once 'speedTest.conf.php';
+require_once 'xmlserver.map.php';
 
 global
     $curpath,
@@ -96,7 +97,7 @@ function doTest($location,$findBest=true){
 	$servers=array($location);
     }
     if($findBest && count($servers)>1){
-	$bestServer=findBestServer(&$servers);
+	$bestServer=findBestServer($servers);
 	//print_r($bestServer);
 	$servers=array($bestServer);
 	$latencyAvarage+=$bestServer['latency']['avg'];
@@ -200,7 +201,8 @@ function getConnectionInfo(){
 
 function getServer($location){
     global
-    $curpath,
+	$xmlservermap,
+	$curpath,
 	$maxDistance,
 	$conInfo,
 	$verbose;
@@ -226,7 +228,8 @@ function getServer($location){
     $output="";
     exec($cmd,$output);
     foreach($output as $row){
-	if(preg_match('/.* url="(?P<url>https?:\/\/[^\/]*)\/.*lat="(?P<lat>[^"]*).*lon="(?P<lon>[^"]*).*name="(?P<name>[^"]*).*countrycode="(?P<countrycode>[^"]*)".*/', $row,$m)){
+	$regex='/.* '.$xmlservermap['url'].'="(?P<url>https?:\/\/[^\/]*)\/.*'.$xmlservermap['lat'].'="(?P<lat>[^"]*).*'.$xmlservermap['lon'].'="(?P<lon>[^"]*).*'.$xmlservermap['name'].'="(?P<name>[^"]*).*'.$xmlservermap['countrycode'].'="(?P<countrycode>[^"]*)".*/';
+	if(preg_match($regex, $row,$m)){
 	    $s=array(
 		'name'=>$m['name'],
 		'url'=>$m['url'],
