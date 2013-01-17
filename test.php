@@ -117,7 +117,7 @@ if($getlist) downloadServerList();
 	exit(1);
     }else{
 	if($nagios){
-	    echo "SpeedTest.net OK: Test successful | " .$data['latency'] ."s;" . $data['download']."Mbps;" . $data['upload']."Mbps";
+	    echo "SpeedTest.net OK: Test successful |Latency=" .$data['latency'] ."s;Download=" . $data['download']."Mbps;Upload=" . $data['upload']."Mbps";
 	}else{
 	    if($verbose) 
 		echo "\n";

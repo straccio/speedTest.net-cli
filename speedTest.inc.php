@@ -65,8 +65,8 @@ function findBestServer(&$servers){
     foreach($servers as &$server){
 	//@TODO
 	$server['latency']=getLatency($server);
-	if($server['latency']['avg']<$bestLatency){
-		$ret=&$server;
+	if($server['latency']!==false && $server['latency']['avg']<$bestLatency){
+		$ret=&$server; 
 		$bestLatency=$server['latency']['avg'];
 	}
     }
@@ -283,7 +283,7 @@ function getLatency($server){
 
 	curl_setopt($ch, CURLOPT_HEADER, true);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	curl_setopt($ch, CURLOPT_TIMEOUT, 50);
+	curl_setopt($ch, CURLOPT_TIMEOUT, 5);
 	curl_setopt($ch, CURLOPT_FILE, $fp);
 	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 	curl_setopt($ch, CURLOPT_FORBID_REUSE, 1);
@@ -299,7 +299,7 @@ function getLatency($server){
 	
 	if ($response === false){
 	     if($verbose)
-		 echo "\nRequest failed".curl_error($ch)."\n";
+		 echo "\nRequest failed ".curl_error($ch)."\n";
 	     curl_close($ch);
 	     fclose($fp);
 	     return false;
@@ -354,7 +354,7 @@ function getDownload($server){
 	curl_setopt($ch, CURLOPT_URL,$ln);
 	curl_setopt($ch, CURLOPT_HEADER, true);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	curl_setopt($ch, CURLOPT_TIMEOUT, 50);
+	//curl_setopt($ch, CURLOPT_TIMEOUT, 50);
 	curl_setopt($ch, CURLOPT_FILE, $fp);
 	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 	curl_setopt($ch, CURLOPT_FORBID_REUSE, 1);
