@@ -426,16 +426,16 @@ function getUpload($server){
     if($verbose)
 	    echo "\n\033[92mGetting uploads for " .$server['name']."(".$server['countrycode'].") from ".$server['url']."\033[0m\n";
     foreach($uploadSizes as $size){
+	if (!file_exists($curpath.'uploads/')){
+	    mkdir('uploads');
+	}
 	$file=$curpath.'uploads/'."upload_".$size;
 	if(!file_exists($file)){
 	    if($verbose)
-            echo "\tCreating upload file for ".$size."\n";
-	    mkdir('uploads');
+		echo "\tCreating upload file for ".$size."\n";
 	    $blocks=substr($size, 0,-1);
 	    $blocksize=  strtolower(substr($size, -1));
 	    shell_exec("dd if=/dev/urandom of=".$file." bs=1".$blocksize. " count=".$blocks." > /dev/null 2>&1");
-	    
-	    
 	}
 	
 	$ch = curl_init();

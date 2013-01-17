@@ -2,7 +2,7 @@
 <?php
 //require_once 'config.inc.php';
 require_once 'speedTest.inc.php';
-
+error_reporting(0);
 
 global
     $smallDownloadSizes,
