@@ -283,7 +283,7 @@ function getLatency($server){
 
 	curl_setopt($ch, CURLOPT_HEADER, true);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+	curl_setopt($ch, CURLOPT_TIMEOUT, TIMEOUT_LATENCY);
 	curl_setopt($ch, CURLOPT_FILE, $fp);
 	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 	curl_setopt($ch, CURLOPT_FORBID_REUSE, 1);
@@ -354,12 +354,11 @@ function getDownload($server){
 	curl_setopt($ch, CURLOPT_URL,$ln);
 	curl_setopt($ch, CURLOPT_HEADER, true);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	//curl_setopt($ch, CURLOPT_TIMEOUT, 50);
 	curl_setopt($ch, CURLOPT_FILE, $fp);
 	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 	curl_setopt($ch, CURLOPT_FORBID_REUSE, 1);
 	curl_setopt($ch, CURLOPT_FRESH_CONNECT, 1);
-	curl_setopt($ch,CURLOPT_TIMEOUT,1000);
+	curl_setopt($ch,CURLOPT_TIMEOUT,TIMEOUT_UPLOAD_DOWNLOAD);
 	//curl_setopt($ch, CURLOPT_BINARYTRANSFER,1);
 	
 	
@@ -450,7 +449,7 @@ function getUpload($server){
 	curl_setopt($ch, CURLOPT_POST, true);
 	curl_setopt($ch, CURLOPT_FORBID_REUSE, 1);
 	curl_setopt($ch, CURLOPT_FRESH_CONNECT, 1);
-	curl_setopt($ch,CURLOPT_TIMEOUT,1000);
+	curl_setopt($ch,CURLOPT_TIMEOUT,TIMEOUT_UPLOAD_DOWNLOAD);
 	
 	
 	$post = array(
