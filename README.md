@@ -14,6 +14,7 @@ edit "speedTest.conf.php"
     define('LATENCY_ROUNDS', 5);    //How many time do the latency test for server
     define('TIMEOUT_LATENCY',5);		//Timeout for latency request
     define('TIMEOUT_UPLOAD_DOWNLOAD',1000);	//Timeout for download/upload requests
+    define( 'SERVER_LIST_URL',"http://c.speedtest.net/speedtest-servers-static.php"); //Url to retrieve the servers list
     $maxDistance=100;               //Max distance in km used by servers filter when you don't specify the location
     $tmpdir = '/tmp/';              //temp folder used to download test files
     $downloadSizes=array(2000);     //Specify the size for download images, it download one image for size
