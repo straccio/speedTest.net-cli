@@ -227,7 +227,7 @@ function getServer ( $location ) {
 		}
 	}
 	if ( $location ) {
-		$cmd = 'cat ' . $curpath . 'testservers.xml | grep -i "\"' . $location . '\""';
+		$cmd = 'cat ' . $curpath . 'testservers.xml | grep -i "' . $location . '"';
 	} else {
 		$cmd = 'cat ' . $curpath . 'testservers.xml';
 	}
