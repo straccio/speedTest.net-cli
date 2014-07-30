@@ -465,7 +465,10 @@ function getUpload ( $server ) {
 				echo "\tCreating upload file for " . $size . "\n";
 			}
 			$blocks    = substr( $size, 0, -1 );
-			$blocksize = strtolower( substr( $size, -1 ) );
+			$blocksize = substr( $size, -1 );
+			if( PHP_OS == "Darwin" ){
+				$blocksize = strtolower($blocksize);
+			}
 			shell_exec( "dd if=/dev/urandom of=" . $file . " bs=1" . $blocksize . " count=" . $blocks . " > /dev/null 2>&1" );
 		}
 
